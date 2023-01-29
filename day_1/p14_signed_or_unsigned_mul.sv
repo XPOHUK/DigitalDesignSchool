@@ -38,13 +38,22 @@ module signed_or_unsigned_mul
 (
   input  [    n - 1:0] a, b,
   input                sign,
-  output [2 * n - 1:0] res
+  output logic [2 * n - 1:0] res
 );
 
   // TODO
 
   // Implement a module that generates either signed or unsigned result
   // of the multiplication as requested by sign bit.
+  wire signed [n - 1:0] sa = a;
+  wire signed [n - 1:0] sb = b;
+
+  always @* begin
+    case (sign)
+	  0: res = a * b;
+	  1: res = sa * sb;
+	endcase
+  end
 
 
 endmodule

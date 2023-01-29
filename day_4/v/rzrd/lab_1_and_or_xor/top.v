@@ -37,13 +37,13 @@ module top
     // Exercise 1: Change the code below.
     // Assign to led [2] the result of AND operation
     
-    assign led [2] = 1'b0;
+    assign led [2] = ~ (~ key_sw [0] & ~ key_sw [1]);
 
     // Exercise 2: Change the code below.
     // Assign to led [3] the result of XOR operation
     // without using "^" operation.
     // Use only operations "&", "|", "~" and parenthesis, "(" and ")".
 
-    assign led [3] = 1'b0;
+    assign led [3] = ~ (( key_sw [2] | key_sw [3]) & ~ ( key_sw[2] & key_sw[3])) ;
 
 endmodule

@@ -21,6 +21,9 @@ module signed_add_with_saturation
   // Implement addition with saturation,
   // i.e. if the result does not fit
   // the maximum or minimum values should be used
+  wire overflow = (a[3] == b[3]) && (a[3] !== temp[3]);
+  wire [3:0] temp = a + b;
+  assign sum = overflow ? (temp[3] ? 4'b0111 : 4'b1000) : temp;
 
 
 endmodule

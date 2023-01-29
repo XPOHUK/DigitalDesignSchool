@@ -11,21 +11,16 @@ endmodule
 
 //----------------------------------------------------------------------------
 
-module and_gate_using_mux
+module not_gate_using_mux
 (
-    input  a,
-    input  b,
+    input  i,
     output o
 );
 
   // TODO
 
-  // Implement and gate using instance(s) of mux,
+  // Implement not gate using instance(s) of mux,
   // constants 0 and 1, and wire connections
-  mux mux_add(.d0(1'b0), .d1(b), .sel(a), .y(o));
-  
-  // mux mux1(.d0(1'b0), .d1(1'b1), .sel(a & b), .y(o));
-
 
 
 endmodule
@@ -34,26 +29,24 @@ endmodule
 
 module testbench;
 
-  logic a, b, o;
-  int i, j;
+  logic a, o;
+  int i;
 
-  and_gate_using_mux inst (a, b, o);
+  not_gate_using_mux inst (a, o);
 
   initial
     begin
       for (i = 0; i <= 1; i++)
-      for (j = 0; j <= 1; j++)
       begin
         a = i;
-        b = j;
 
         # 1;
 
-        $display ("TEST %b & %b = %b", a, b, o);
+        $display ("TEST ~ %b = %b", a, o);
     
-        if (o !== (a & b))
+        if (o !== ~ a)
           begin
-            $display ("%s FAIL: %h EXPECTED", `__FILE__, a & b);
+            $display ("%s FAIL: %h EXPECTED", `__FILE__, ~ a);
             $finish;
           end
       end
