@@ -78,7 +78,7 @@ module top
 		if (reset)
 			inc_dec <= 1'b0;
 		else if (key_d_pressed)
-			inc_dec <= inc_dec + 1'b1;
+			inc_dec <= ~ inc_dec;
 			
     reg [3:0] cnt;
     always @ (posedge clk or posedge reset)
